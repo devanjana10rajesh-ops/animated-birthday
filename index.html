@@ -3,69 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Celebration</title>
+    <title>Animated Birthday</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background-color: #f9f5ec;
-            color: #6b4226;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            overflow: hidden;
+            background: #FFFAF0;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 20px;
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Maple_leaf.svg') no-repeat center center;
+            background-size: cover;
+            animation: fall linear infinite;
         }
 
-        .treasure-hunt {
-            background-color: #fff8e1;
-            border: 2px solid #dab997;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
-        }
-
-        .letters {
-            margin: 20px 0;
-        }
-
-        .visuals {
-            margin-top: 20px;
-        }
-
-        .visuals img {
-            max-width: 100%;
-            border-radius: 10px;
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) translateX(30px) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Birthday Celebration!</h1>
-        <p>A cottagecore-themed experience just for you.</p>
-    </header>
 
-    <main class="treasure-hunt">
-        <h2>Treasure Hunt</h2>
-        <p>Find the hidden items to complete your adventure!</p>
-    </main>
+    <audio autoplay loop>
+        <source src="https://www.example.com/path-to-your-peaceful-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-    <section class="letters">
-        <h3>Letters</h3>
-        <p>Place for heartfelt wishes and memories.</p>
-    </section>
+    <script>
+        // Create falling leaves
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
 
-    <section class="visuals">
-        <h3>Visuals</h3>
-        <img src="https://via.placeholder.com/400x300" alt="Placeholder for visuals">
-    </section>
+            document.body.appendChild(leaf);
+
+            // Remove leaf after animation duration
+            setTimeout(() => {
+                leaf.remove();
+            }, 10000);
+        }
+
+        setInterval(createLeaf, 500);
+    </script>
+
 </body>
 </html>
